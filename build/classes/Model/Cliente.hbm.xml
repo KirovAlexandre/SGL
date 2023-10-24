@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 28, 2023 8:50:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Cliente" table="cliente" catalog="sgdl_poo" optimistic-lock="version">
+        <id name="idCliente" type="java.lang.Integer">
+            <column name="idCliente" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="enderecoentrega" class="Model.Enderecoentrega" fetch="select">
+            <column name="fkEnderecoEntrega" />
+        </many-to-one>
+        <property name="primeiroNome" type="string">
+            <column name="primeiroNome" length="40" not-null="true" />
+        </property>
+        <property name="apelido" type="string">
+            <column name="apelido" length="40" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="60" not-null="true" unique="true" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" length="40" not-null="true" />
+        </property>
+        <property name="dataNascimento" type="date">
+            <column name="dataNascimento" length="10" not-null="true" />
+        </property>
+        <property name="sexo" type="char">
+            <column name="sexo" length="1" not-null="true" />
+        </property>
+        <property name="dataCadastro" type="timestamp">
+            <column name="dataCadastro" length="19" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="40" not-null="true" />
+        </property>
+        <property name="enderecoResidencia" type="string">
+            <column name="enderecoResidencia" length="40" not-null="true" />
+        </property>
+        <property name="estadoB" type="java.lang.Boolean">
+            <column name="estadoB" />
+        </property>
+        <set name="telefoneclientes" table="telefonecliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fkCliente" />
+            </key>
+            <one-to-many class="Model.Telefonecliente" />
+        </set>
+        <set name="pedidos" table="pedido" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fkCliente" />
+            </key>
+            <one-to-many class="Model.Pedido" />
+        </set>
+        <set name="vendas" table="venda" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fkCliente" />
+            </key>
+            <one-to-many class="Model.Venda" />
+        </set>
+        <set name="encomendas" table="encomenda" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fkCliente" />
+            </key>
+            <one-to-many class="Model.Encomenda" />
+        </set>
+    </class>
+</hibernate-mapping>

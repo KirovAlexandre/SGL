@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 28, 2023 8:50:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.TelefoneFuncionario" table="telefone_funcionario" catalog="sgdl_poo" optimistic-lock="version">
+        <id name="idTelefoneCli" type="java.lang.Integer">
+            <column name="id_telefone_cli" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empregado" class="Model.Empregado" fetch="select">
+            <column name="fkEmpregado" />
+        </many-to-one>
+        <property name="contacto" type="int">
+            <column name="contacto" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 28, 2023 8:50:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Itemcardapio" table="itemcardapio" catalog="sgdl_poo" optimistic-lock="version">
+        <id name="idItemCardapio" type="java.lang.Integer">
+            <column name="idItemCardapio" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="encomenda" class="Model.Encomenda" fetch="select">
+            <column name="fkEncomenda" />
+        </many-to-one>
+        <many-to-one name="pedido" class="Model.Pedido" fetch="select">
+            <column name="fkPedido" />
+        </many-to-one>
+        <property name="nomeItem" type="string">
+            <column name="nomeItem" length="30" not-null="true" />
+        </property>
+        <property name="precoUnitario" type="int">
+            <column name="precoUnitario" not-null="true" />
+        </property>
+        <property name="estado" type="java.lang.Boolean">
+            <column name="estado" />
+        </property>
+        <set name="produtos" table="produto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fkItemCardapio" />
+            </key>
+            <one-to-many class="Model.Produto" />
+        </set>
+    </class>
+</hibernate-mapping>

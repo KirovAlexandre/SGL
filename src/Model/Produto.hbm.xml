@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 28, 2023 8:50:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Produto" table="produto" catalog="sgdl_poo" optimistic-lock="version">
+        <id name="idProduto" type="java.lang.Integer">
+            <column name="idProduto" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="itemcardapio" class="Model.Itemcardapio" fetch="select">
+            <column name="fkItemCardapio" />
+        </many-to-one>
+        <property name="categoriaProduto" type="java.lang.Integer">
+            <column name="categoriaProduto" />
+        </property>
+        <property name="nomeProduto" type="string">
+            <column name="nomeProduto" length="60" not-null="true" />
+        </property>
+        <property name="quantidadeProduto" type="int">
+            <column name="quantidadeProduto" not-null="true" />
+        </property>
+        <property name="precoUnitarioProduto" type="int">
+            <column name="precoUnitarioProduto" not-null="true" />
+        </property>
+        <property name="precoCompraProduto" type="int">
+            <column name="precoCompraProduto" not-null="true" />
+        </property>
+        <property name="dataCompraProduto" type="date">
+            <column name="dataCompraProduto" length="10" not-null="true" />
+        </property>
+        <property name="dataValidadeProduto" type="date">
+            <column name="dataValidadeProduto" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 28, 2023 8:50:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Pedido" table="pedido" catalog="sgdl_poo" optimistic-lock="version">
+        <id name="idPedido" type="java.lang.Integer">
+            <column name="idPedido" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="Model.Cliente" fetch="select">
+            <column name="fkCliente" />
+        </many-to-one>
+        <many-to-one name="empregado" class="Model.Empregado" fetch="select">
+            <column name="fkEmpregado" />
+        </many-to-one>
+        <property name="dataPedido" type="timestamp">
+            <column name="dataPedido" length="19" not-null="true" />
+        </property>
+        <property name="situacaoPedido" type="string">
+            <column name="situacaoPedido" length="30" not-null="true" />
+        </property>
+        <set name="vendas" table="venda" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fkPedido" />
+            </key>
+            <one-to-many class="Model.Venda" />
+        </set>
+        <set name="itemcardapios" table="itemcardapio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fkPedido" />
+            </key>
+            <one-to-many class="Model.Itemcardapio" />
+        </set>
+    </class>
+</hibernate-mapping>

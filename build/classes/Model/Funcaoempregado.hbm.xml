@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 28, 2023 8:50:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Funcaoempregado" table="funcaoempregado" catalog="sgdl_poo" optimistic-lock="version">
+        <id name="idFuncao" type="java.lang.Integer">
+            <column name="idFuncao" />
+            <generator class="identity" />
+        </id>
+        <property name="funcao" type="string">
+            <column name="funcao" length="40" not-null="true" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="60" />
+        </property>
+        <property name="status" type="java.lang.Boolean">
+            <column name="status" />
+        </property>
+        <set name="empregados" table="empregado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="fkFuncaoEmpregado" />
+            </key>
+            <one-to-many class="Model.Empregado" />
+        </set>
+    </class>
+</hibernate-mapping>

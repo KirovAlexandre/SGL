@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 28, 2023 8:50:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Venda" table="venda" catalog="sgdl_poo" optimistic-lock="version">
+        <id name="idVenda" type="java.lang.Integer">
+            <column name="idVenda" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="Model.Cliente" fetch="select">
+            <column name="fkCliente" />
+        </many-to-one>
+        <many-to-one name="encomenda" class="Model.Encomenda" fetch="select">
+            <column name="fkEncomenda" />
+        </many-to-one>
+        <many-to-one name="pedido" class="Model.Pedido" fetch="select">
+            <column name="fkPedido" />
+        </many-to-one>
+        <property name="situacao" type="string">
+            <column name="situacao" length="30" not-null="true" />
+        </property>
+        <property name="dataVenda" type="timestamp">
+            <column name="dataVenda" length="19" not-null="true" />
+        </property>
+        <property name="valorTotalVenda" type="int">
+            <column name="valorTotalVenda" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

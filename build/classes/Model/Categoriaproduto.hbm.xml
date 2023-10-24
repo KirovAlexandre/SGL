@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 28, 2023 8:50:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Categoriaproduto" table="categoriaproduto" catalog="sgdl_poo" optimistic-lock="version">
+        <id name="idCategoriaProduto" type="java.lang.Integer">
+            <column name="idCategoriaProduto" />
+            <generator class="identity" />
+        </id>
+        <property name="categoria" type="string">
+            <column name="categoria" length="30" not-null="true" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="30" />
+        </property>
+    </class>
+</hibernate-mapping>
