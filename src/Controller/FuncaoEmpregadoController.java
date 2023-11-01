@@ -23,8 +23,8 @@ import javax.persistence.EntityManager;
  */
 public class FuncaoEmpregadoController {
     
-    Session s = HibernateUtil.getSessionFactory().getCurrentSession();
-    Funcaoempregado fe;
+    private Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+    private Funcaoempregado fe;
     
     public Funcaoempregado pesquisa(Integer id){
         try{

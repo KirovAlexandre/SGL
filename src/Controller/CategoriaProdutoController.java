@@ -15,7 +15,7 @@ import org.hibernate.Session;
  *
  * @author Kirov Mabasso
  */
-public class CategoriaProduto {
+public class CategoriaProdutoController {
 
     Session s = HibernateUtil.getSessionFactory().getCurrentSession();
     Categoriaproduto cp;

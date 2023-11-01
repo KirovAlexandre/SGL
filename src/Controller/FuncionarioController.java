@@ -11,6 +11,7 @@ import Util.HibernateUtil;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
@@ -98,6 +99,29 @@ public class FuncionarioController {
         }
          return em;
     }
+    
+    public void alterarSenha(String email, String senha1, String senha2){
+        //  try{
+              s.beginTransaction();
+        Query query = s.createQuery("From  Empregado WHERE email = :email");
+        query.setParameter("email", email);
+        Empregado empregado = (Empregado) query.uniqueResult();
+              //System.out.println(empregado.getApelido());
+              if(empregado.getEmail().equalsIgnoreCase(email)){
+                  if(senha1.equals(senha2)){
+                      empregado.setSenha(senha2);
+                      s.update(empregado);
+                      s.getTransaction().commit();
+                  }else{
+                     JOptionPane.showMessageDialog(null,"As senhas devem ser iguais!"); 
+                  }
+              }else{
+                  JOptionPane.showMessageDialog(null,"Email não cadastrado!");
+              }
+         /* }catch(Exception e){
+              JOptionPane.showMessageDialog(null,"Ocorreu uma excepção do tipo: "+e.getMessage());
+          }*/
+      }
 
     public static void main(String[] args) {
         
@@ -107,11 +131,8 @@ int dia = 15;*/
     
     //codigoAno = anoEspecifico - 1900;
     //mes eh de 0 a 11
-Date data = new Date(100, 10, 1);
 
-System.out.println(data);
-      
-
+    new FuncionarioController().alterarSenha("pedo@gmail.com", "12345", "1234");
     }
 
 }
